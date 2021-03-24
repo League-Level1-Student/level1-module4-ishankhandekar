@@ -75,9 +75,11 @@ JOptionPane.showMessageDialog(null, "Press the matching key when 'Simon says' ot
 		// 22. Increment tries by 1
 
 		// 25. If tries is greater than 9 (or however many you want)...
-		if (tries > 7) {
+		if (tries > 3) {
+			j.setVisible(false);
 			JOptionPane.showMessageDialog(null, "your score was" + points);
 			System.exit(0);
+			
 		}
 		// 26. Tell the user their score
 		

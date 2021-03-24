@@ -63,18 +63,20 @@ public class Jeopardy implements ActionListener {
 		firstButton = createButton("$400");
 		// 7. Add the firstButton to the quizPanel
 		quizPanel.add(firstButton);
+		
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 		
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
-
+		secondButton = createButton("$300");
 		// 10. Add the secondButton to the quizPanel
-
+		frame.add(secondButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
-
+		firstButton.addActionListener(this);
+		secondButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
-
+		
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
 		
 		 /*
@@ -110,30 +112,42 @@ public class Jeopardy implements ActionListener {
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-
+		if (buttonPressed == firstButton) {
+			askQuestion("what is 6 / 1&1/2","4",600);
+			firstButton.setText("");
+		}
 			// Call the askQuestion() method
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
 
 		// If the buttonPressed was the secondButton
-
+		if (buttonPressed == secondButton) {
+			askQuestion("what is 5008.5*0.5","2504.25",600);
+			secondButton.setText("");
+		}
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+		
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		String answer = JOptionPane.showInputDialog( question);
 		
 		// Stop the theme music when they have entered their response. Hint: use the sound variable 
-		
+		sound.stop();
 		// If the answer is correct
-
+		if (answer.replaceAll(" ", "") == correctAnswer) {
+			score += prizeMoney;
+			JOptionPane.showMessageDialog(null, "you were correct!");
+		}else {
+			score -= prizeMoney;
+			JOptionPane.showMessageDialog(null, "you were incorrect.");
+		}
 			// Increase the score by the prizeMoney
 
 			// Pop up a message to tell the user they were correct
@@ -145,7 +159,7 @@ public class Jeopardy implements ActionListener {
 			// Pop up a message to tell the user they were wrong and give them the correct answer
 
 		// Call the updateScore() method
-
+		updateScore();
 	}
 
 	public void playJeopardyTheme() {
