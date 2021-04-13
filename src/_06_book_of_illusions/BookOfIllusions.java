@@ -53,10 +53,10 @@ public class BookOfIllusions extends MouseAdapter {
 		}
 		// 12. remove everything from the frame that was added earlier
 		
-		
+		j.remove(l);
 		// 13. load a new image like before (this is more than one line of code)
 		l = loadImageFromComputer(ImageName);
-		
+		j.add(l);
 		// 14. pack the frame
 		j.pack();
 	}
